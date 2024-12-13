@@ -1,7 +1,23 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import type { PokemonsRes } from "../types";
+
+const url = "https://pokeapi.co/api/v2/pokemon";
+
+const fetchPokemons = await fetch(url);
+const pokemonsRes = (await fetchPokemons.json()) as PokemonsRes;
 ---
 
-<Layout>
-  <h1>edar</h1>
+<Layout title="Inicio">
+  <main class="grid place-content-center gap-2">
+    <h1 class="text-cyan-800 text-xl border-b-2 border-cyan-800">Pokemons</h1>
+
+    <ul>
+      {
+        pokemonsRes.results.map((item) => (
+          <li class="list-disc">{item.name}</li>
+        ))
+      }
+    </ul>
+  </main>
 </Layout>

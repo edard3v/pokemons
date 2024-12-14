@@ -14,5 +14,5 @@ const { title, img, class: cls } = Astro.props;
   class:list={["inline-block max-w-[200px] border-2 rounded-md p-2", cls]}
 >
   <div class="text-center capitalize">{title}</div>
-  <img src={img} alt={title} />
+  <img transition:name={title} src={img} alt={title} />
 </a>

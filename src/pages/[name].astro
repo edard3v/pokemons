@@ -1,7 +1,10 @@
 ---
 import type { GetStaticPaths } from "astro";
-export const getStaticPaths = (() => {
-  return [{ params: { name: "bulbasaur" } }];
+import { getPokemons } from "../services/getPokemons";
+export const getStaticPaths = (async () => {
+  const pokemons = (await getPokemons()).results;
+
+  return pokemons.map(({ name }) => ({ params: { name } }));
 }) satisfies GetStaticPaths;
 
 const { name } = Astro.params;

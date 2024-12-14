@@ -1,6 +1,10 @@
 export const ROUTER = {
   index: {
-    display: "Inicio",
+    display: "Pokemons",
     path: "/",
+  },
+  contacto: {
+    display: "Contacto",
+    path: "/contacto/",
   },
 };

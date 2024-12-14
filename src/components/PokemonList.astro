@@ -1,0 +1,21 @@
+---
+import type { PokemonsRes } from "../types";
+import PokemonCard from "./PokemonCard.astro";
+
+const url = "https://pokeapi.co/api/v2/pokemon";
+const fetchPokemons = await fetch(url);
+const pokemonsRes = (await fetchPokemons.json()) as PokemonsRes;
+const getPokemonImg = (pokemonId: number) => {
+  return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemonId}.png`;
+};
+---
+
+<ul class="grid grid-cols-[repeat(auto-fit,200px)] justify-center p-4">
+  {
+    pokemonsRes.results.map((item) => {
+      const pokemonId = Number(item.url.split("/").at(-2));
+
+      return <PokemonCard title={item.name} img={getPokemonImg(pokemonId)} />;
+    })
+  }
+</ul>

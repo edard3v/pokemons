@@ -11,7 +11,10 @@ const { title, img, class: cls } = Astro.props;
 
 <a
   href={`/${title}/`}
-  class:list={["inline-block max-w-[200px] border-2 rounded-md p-2", cls]}
+  class:list={[
+    "inline-block max-w-[200px] border-2 rounded-md p-2 aspect-[200/224]",
+    cls,
+  ]}
 >
   <div class="text-center capitalize">{title}</div>
   <img transition:name={title} src={img} alt={title} />

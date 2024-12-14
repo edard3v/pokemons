@@ -2,12 +2,15 @@
 import { ClientRouter } from "astro:transitions";
 import Nav from "../components/Nav.astro";
 import { capitalize } from "../utils/capitalize";
+import { SEO } from "@consts/seo";
 
 interface Props {
   title: string;
+  description?: string;
+  img?: string;
 }
 
-const { title } = Astro.props;
+const { title, description, img } = Astro.props;
 ---
 
 <!doctype html>
@@ -17,6 +20,21 @@ const { title } = Astro.props;
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
+
+    <!-- SEO -->
+    <meta name="robots" content="index, follow" />
+    <meta name="author" content={SEO.author} />
+    <meta name="language" content="es" />
+    <meta name="description" content={description || SEO.description} />
+    <meta name="keywords" content={SEO.keywords} />
+
+    <!--OG Metatags -->
+    <meta property="og:title" content={title} />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_ES" />
+    <meta property="og:description" content={description || SEO.description} />
+    <meta property="og:image" content={img || SEO.img} />
+
     <title>{capitalize(title)}</title>
     <ClientRouter />
   </head>

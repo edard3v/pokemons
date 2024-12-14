@@ -20,7 +20,7 @@ const { name } = Astro.params;
 const { img, audio } = Astro.props;
 ---
 
-<Layout title={name}>
+<Layout title={name} img={img}>
   <main class="p-4 grid place-content-center">
     <PokemonCard class={"max-w-[450px]"} title={name} img={img} />
     <audio controls>

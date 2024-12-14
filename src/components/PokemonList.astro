@@ -1,16 +1,20 @@
 ---
-import { getPokemons } from "../services/getPokemons";
 import { getPokemonImg } from "../services/getPokemonImg";
 import PokemonCard from "./PokemonCard.astro";
+import type { Pokemon } from "../types";
 
-const pokemonRes = await getPokemons();
+interface Props {
+  pokemons: Pokemon[];
+}
+
+const { pokemons } = Astro.props;
 ---
 
 <section
   class="grid grid-cols-[repeat(auto-fit,200px)] justify-center p-4 gap-2"
 >
   {
-    pokemonRes.results.map(({ name, url }) => (
+    pokemons.map(({ name, url }) => (
       <PokemonCard title={name} img={getPokemonImg(url)} />
     ))
   }

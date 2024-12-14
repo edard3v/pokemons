@@ -7,7 +7,10 @@ interface Props {
 const { title, img } = Astro.props;
 ---
 
-<a href={`/${title}/`} class="border-2 rounded-md pt-2">
+<a
+  href={`/${title}/`}
+  class="inline-block max-w-[200px] border-2 rounded-md p-2"
+>
   <div class="text-center capitalize">{title}</div>
   <img src={img} alt={title} />
 </a>

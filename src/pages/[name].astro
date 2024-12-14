@@ -1,13 +1,28 @@
 ---
 import type { GetStaticPaths } from "astro";
 import { getPokemons } from "../services/getPokemons";
+import PokemonCard from "../components/PokemonCard.astro";
+import { getPokemonImg } from "../services/getPokemonImg";
+import Layout from "../layouts/Layout.astro";
+import { getPokemonAudio } from "../services/getPokemonAudio";
 export const getStaticPaths = (async () => {
-  const pokemons = (await getPokemons()).results;
+  const pokemons = (await getPokemons(151)).results;
 
-  return pokemons.map(({ name }) => ({ params: { name } }));
+  return pokemons.map(({ name, url }) => ({
+    params: { name },
+    props: { img: getPokemonImg(url), audio: getPokemonAudio(url) },
+  }));
 }) satisfies GetStaticPaths;
 
 const { name } = Astro.params;
+const { img, audio } = Astro.props;
 ---
 
-<h1>{name}</h1>
+<Layout title={name}>
+  <main class="p-4 grid place-content-center">
+    <PokemonCard title={name} img={img} />
+    <audio controls>
+      <source src={audio} type="audio/ogg" />
+    </audio>
+  </main>
+</Layout>

@@ -1,0 +1,25 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"button"> {}
+
+const { class: cls, disabled, ...rest } = Astro.props;
+---
+
+<button
+  {...rest}
+  class:list={[
+    "bg-cyan-600 px-3 py-2 rounded-md text-white cursor-pointer",
+    cls,
+    { isDisabled: disabled },
+  ]}
+  disabled={disabled}
+>
+  <slot />
+</button>
+
+<style>
+  .isDisabled {
+    @apply bg-transparent border border-gray-400  text-gray-400 cursor-not-allowed;
+  }
+</style>

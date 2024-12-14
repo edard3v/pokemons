@@ -1,0 +1,18 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import Btn from "./Btn.astro";
+
+interface Props extends HTMLAttributes<"div"> {
+  currentPage: number;
+  prev?: string;
+  next?: string;
+}
+
+const { currentPage, class: cls, next, prev } = Astro.props;
+---
+
+<div class:list={["flex items-center gap-2", cls]}>
+  <a href={prev}><Btn disabled={!prev}>Anterior</Btn></a>
+  <div class="text-xl p-2">{currentPage}</div>
+  <a href={next}><Btn disabled={!next}>Siguiente</Btn></a>
+</div>

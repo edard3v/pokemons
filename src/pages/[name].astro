@@ -5,9 +5,10 @@ import PokemonCard from "../components/PokemonCard.astro";
 import { getPokemonImg } from "../services/getPokemonImg";
 import Layout from "../layouts/Layout.astro";
 import { getPokemonAudio } from "../services/getPokemonAudio";
+import { ACCOUNT_POKEMONS } from "../consts/accountPokemons";
 
 export const getStaticPaths = (async () => {
-  const pokemons = (await getPokemons(51)).results;
+  const pokemons = (await getPokemons(ACCOUNT_POKEMONS)).results;
 
   return pokemons.map(({ name, url }) => ({
     params: { name },

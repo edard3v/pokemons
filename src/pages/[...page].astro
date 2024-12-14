@@ -3,17 +3,26 @@ import PokemonList from "../components/PokemonList.astro";
 import Layout from "../layouts/Layout.astro";
 import type { GetStaticPaths } from "astro";
 import { getPokemons } from "../services/getPokemons";
-export const getStaticPaths = (async ({ paginate }) => {
-  const pokemons = (await getPokemons(51)).results;
+import Paged from "../components/Paged.astro";
+import { ACCOUNT_POKEMONS } from "../consts/accountPokemons";
 
-  return paginate(pokemons, { pageSize: 20 });
+export const getStaticPaths = (async ({ paginate }) => {
+  const pokemons = (await getPokemons(ACCOUNT_POKEMONS)).results;
+
+  return paginate(pokemons, { pageSize: 27 });
 }) satisfies GetStaticPaths;
 
 const { page } = Astro.props;
 ---
 
 <Layout title="Inicio">
-  <main class="grid gap-2">
+  <main class="grid gap-2 max-w-[1920px]">
     <PokemonList pokemons={page.data} />
+    <Paged
+      class="mx-auto"
+      currentPage={page.currentPage}
+      prev={page.url.prev}
+      next={page.url.next}
+    />
   </main>
 </Layout>

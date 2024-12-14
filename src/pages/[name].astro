@@ -1,11 +1,11 @@
 ---
+import PokemonCard from "@components/PokemonCard.astro";
+import { ACCOUNT_POKEMONS } from "@consts/accountPokemons";
+import Layout from "@layouts/Layout.astro";
+import { getPokemonAudio } from "@services/getPokemonAudio";
+import { getPokemonImg } from "@services/getPokemonImg";
+import { getPokemons } from "@services/getPokemons";
 import type { GetStaticPaths } from "astro";
-import { getPokemons } from "../services/getPokemons";
-import PokemonCard from "../components/PokemonCard.astro";
-import { getPokemonImg } from "../services/getPokemonImg";
-import Layout from "../layouts/Layout.astro";
-import { getPokemonAudio } from "../services/getPokemonAudio";
-import { ACCOUNT_POKEMONS } from "../consts/accountPokemons";
 
 export const getStaticPaths = (async () => {
   const pokemons = (await getPokemons(ACCOUNT_POKEMONS)).results;

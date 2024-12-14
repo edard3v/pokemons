@@ -1,10 +1,10 @@
 ---
-import PokemonList from "../components/PokemonList.astro";
-import Layout from "../layouts/Layout.astro";
+import Paged from "@components/Paged.astro";
+import PokemonList from "@components/PokemonList.astro";
+import { ACCOUNT_POKEMONS } from "@consts/accountPokemons";
+import Layout from "@layouts/Layout.astro";
+import { getPokemons } from "@services/getPokemons";
 import type { GetStaticPaths } from "astro";
-import { getPokemons } from "../services/getPokemons";
-import Paged from "../components/Paged.astro";
-import { ACCOUNT_POKEMONS } from "../consts/accountPokemons";
 
 export const getStaticPaths = (async ({ paginate }) => {
   const pokemons = (await getPokemons(ACCOUNT_POKEMONS)).results;

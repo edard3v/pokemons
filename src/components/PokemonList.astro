@@ -10,10 +10,8 @@ const pokemonRes = await getPokemons();
   class="grid grid-cols-[repeat(auto-fit,200px)] justify-center p-4 gap-2"
 >
   {
-    pokemonRes.results.map((item) => {
-      const pokemonId = Number(item.url.split("/").at(-2));
-
-      return <PokemonCard title={item.name} img={getPokemonImg(pokemonId)} />;
-    })
+    pokemonRes.results.map(({ name, url }) => (
+      <PokemonCard title={name} img={getPokemonImg(url)} />
+    ))
   }
 </section>

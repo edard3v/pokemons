@@ -6,7 +6,7 @@ import { getPokemonImg } from "../services/getPokemonImg";
 import Layout from "../layouts/Layout.astro";
 import { getPokemonAudio } from "../services/getPokemonAudio";
 export const getStaticPaths = (async () => {
-  const pokemons = (await getPokemons(151)).results;
+  const pokemons = (await getPokemons(51)).results;
 
   return pokemons.map(({ name, url }) => ({
     params: { name },
@@ -20,7 +20,7 @@ const { img, audio } = Astro.props;
 
 <Layout title={name}>
   <main class="p-4 grid place-content-center">
-    <PokemonCard title={name} img={img} />
+    <PokemonCard class={"max-w-[450px]"} title={name} img={img} />
     <audio controls>
       <source src={audio} type="audio/ogg" />
     </audio>

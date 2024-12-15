@@ -52,8 +52,8 @@ const { img, audio } = Astro.props;
 
   document.addEventListener("astro:page-load", () => {
     console.log("page-load");
-    const btnHeart = DOM.select("btn-heart");
 
+    const btnHeart = DOM.select("btn-heart");
     if (!btnHeart) return;
 
     const pokemonName = btnHeart.dataset?.pokemon_name;

@@ -49,9 +49,12 @@ const { img, audio } = Astro.props;
     if (!btnHeart) return;
 
     const pokemonName = btnHeart.dataset?.pokemon_name;
+    const heart = btnHeart.firstElementChild;
+    const heartFill = btnHeart.lastElementChild;
+
     btnHeart.addEventListener("click", () => {
-      btnHeart.firstElementChild?.classList.toggle("hidden");
-      btnHeart.lastElementChild?.classList.toggle("hidden");
+      heart?.classList.toggle("hidden");
+      heartFill?.classList.toggle("hidden");
     });
   });
 </script>

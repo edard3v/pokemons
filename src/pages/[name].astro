@@ -42,7 +42,13 @@ const { img, audio } = Astro.props;
 </Layout>
 
 <script>
+  import { FAV_POKEMONS } from "@consts/localStorage";
+  import { isFavoritePokemon } from "@utils/isFavoritePokemon";
+  import { toggleFavoritePokemons } from "@utils/toggleFavoritePokemons";
   import { DOM } from "src/dom/dom";
+
+  const favPokemons = localStorage.getItem(FAV_POKEMONS);
+  !favPokemons && localStorage.setItem(FAV_POKEMONS, JSON.stringify([]));
 
   document.addEventListener("astro:page-load", () => {
     const btnHeart = DOM.select("btn-heart");
@@ -52,9 +58,16 @@ const { img, audio } = Astro.props;
     const heart = btnHeart.firstElementChild;
     const heartFill = btnHeart.lastElementChild;
 
+    const isFavPokemon = isFavoritePokemon(pokemonName as string);
+    if (isFavPokemon) {
+      heart?.classList.add("hidden");
+      heartFill?.classList.remove("hidden");
+    }
+
     btnHeart.addEventListener("click", () => {
       heart?.classList.toggle("hidden");
       heartFill?.classList.toggle("hidden");
+      toggleFavoritePokemons(pokemonName as string);
     });
   });
 </script>

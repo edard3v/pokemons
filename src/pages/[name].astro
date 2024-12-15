@@ -21,9 +21,12 @@ const { img, audio } = Astro.props;
 ---
 
 <Layout title={name} img={img}>
-  <main class="p-4 grid place-content-center">
-    <PokemonCard class={"max-w-[450px]"} title={name} img={img} />
-    <audio controls>
+  <main class="p-4 grid place-content-center gap-2">
+    <button class="text-start text-blue-800" onclick="history.back()"
+      >Volver</button
+    >
+    <PokemonCard class={"max-w-[450px] border-none"} title={name} img={img} />
+    <audio controls class="justify-self-center">
       <source src={audio} type="audio/ogg" />
     </audio>
   </main>

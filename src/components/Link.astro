@@ -7,13 +7,14 @@ const { class: cls, ...rest } = Astro.props;
 const isActive = Astro.url.pathname === Astro.props.href;
 ---
 
-<a {...rest} class:list={["relative hover:text-cyan-700", cls]}>
+<a {...rest} class:list={["grid hover:text-cyan-700", cls]}>
   <slot />
-  <span class:list={[{ isActive }]}></span>
-</a>
-
-<style>
-  .isActive {
-    @apply absolute bottom-0 left-0 w-full h-[2px] bg-cyan-700;
+  {
+    isActive && (
+      <span
+        transition:name={"line's link"}
+        class:list={["w-full h-[2px] bg-cyan-700"]}
+      />
+    )
   }
-</style>
+</a>

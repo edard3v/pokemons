@@ -38,8 +38,14 @@ const { title, description, img } = Astro.props;
     <title>{capitalize(title)}</title>
     <ClientRouter />
   </head>
-  <body class="min-h-dvh border-2 grid grid-rows-[auto,1fr]">
+  <body class="min-h-dvh grid grid-rows-[auto,1fr]">
     <Nav />
     <slot />
   </body>
 </html>
+
+<style>
+  :root {
+    scrollbar-gutter: stable;
+  }
+</style>

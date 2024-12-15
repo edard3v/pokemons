@@ -1,8 +1,12 @@
 ---
 import Layout from "@layouts/Layout.astro";
 import { ROUTER } from "./router";
+import Counter from "src/react/Counter";
 ---
 
 <Layout title={ROUTER.favoritos.display}>
-  <h1>Favoritos</h1>
+  <main>
+    <h1>Favoritos</h1>
+    <Counter client:load />
+  </main>
 </Layout>

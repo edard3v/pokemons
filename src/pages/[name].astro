@@ -6,6 +6,7 @@ import { getPokemonAudio } from "@services/getPokemonAudio";
 import { getPokemonImg } from "@services/getPokemonImg";
 import { getPokemons } from "@services/getPokemons";
 import type { GetStaticPaths } from "astro";
+import { Icon } from "astro-icon/components";
 
 export const getStaticPaths = (async () => {
   const pokemons = (await getPokemons(ACCOUNT_POKEMONS)).results;
@@ -21,13 +22,31 @@ const { img, audio } = Astro.props;
 ---
 
 <Layout title={name} img={img}>
-  <main class="p-4 grid place-content-center gap-2">
-    <button class="text-start text-blue-800" onclick="history.back()"
-      >Volver</button
-    >
+  <main class="p-4 grid place-content-center gap-2" id="page-name">
+    <div class="flex">
+      <button class="text-blue-800" onclick="history.back()">Volver</button>
+      <button
+        id="btn-heart"
+        class="ml-auto hover:animate-pulse"
+        data-pokemon_name={name}
+      >
+        <Icon name="heart" size={32} />
+        <Icon name="heart-fill" size={32} class={"hidden"} />
+      </button>
+    </div>
     <PokemonCard class={"max-w-[450px] border-none"} title={name} img={img} />
     <audio controls class="justify-self-center">
       <source src={audio} type="audio/ogg" />
     </audio>
   </main>
 </Layout>
+
+<script>
+  document.addEventListener("astro:page-load", () => {
+    const btnHeart = document.querySelector("#btn-heart") as HTMLButtonElement;
+    if (!btnHeart) return;
+
+    const pokemonName = btnHeart.dataset?.pokemon_name;
+    btnHeart.addEventListener("click", () => console.log(pokemonName));
+  });
+</script>

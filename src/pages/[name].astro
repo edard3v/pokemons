@@ -51,8 +51,6 @@ const { img, audio } = Astro.props;
   !favPokemons && localStorage.setItem(FAV_POKEMONS, JSON.stringify([]));
 
   document.addEventListener("astro:page-load", () => {
-    console.log("page-load");
-
     const btnHeart = DOM.select("btn-heart");
     if (!btnHeart) return;
 

@@ -1,5 +1,5 @@
 ---
-import { ClientRouter } from "astro:transitions";
+import { ViewTransitions } from "astro:transitions";
 import Nav from "../components/Nav.astro";
 import { capitalize } from "../utils/capitalize";
 import { SEO } from "@consts/seo";
@@ -36,7 +36,7 @@ const { title, description, img } = Astro.props;
     <meta property="og:image" content={img || SEO.img} />
 
     <title>{capitalize(title)}</title>
-    <ClientRouter />
+    <ViewTransitions />
   </head>
   <body class="min-h-dvh grid grid-rows-[auto,1fr]">
     <Nav />

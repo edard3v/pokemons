@@ -2,11 +2,12 @@
 import { ROUTER } from "../pages/router";
 import Link from "./Link.astro";
 
-const { index, favoritos, contacto } = ROUTER;
+const { index, favoritos, contacto, islas } = ROUTER;
 ---
 
 <nav class="p-4 flex gap-2 border-b justify-center">
   <Link href={index.path}>{index.display}</Link>
   <Link href={favoritos.path}>{favoritos.display}</Link>
+  <Link href={islas.path}>{islas.display}</Link>
   <Link href={contacto.path}>{contacto.display}</Link>
 </nav>

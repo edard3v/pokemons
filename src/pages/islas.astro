@@ -1,0 +1,9 @@
+---
+import Layout from "@layouts/Layout.astro";
+import Counter from "src/react/Counter";
+import { ROUTER } from "./router";
+---
+
+<Layout title={ROUTER.islas.display}>
+  <Counter client:load />
+</Layout>

@@ -1,4 +1,6 @@
 import { FAV_POKEMONS } from "@consts/localStorage";
+import { toggleFavoritePokemons } from "@utils/toggleFavoritePokemons";
+import { DOM } from "src/dom/dom";
 
 export default function FavPokemonCards() {
   const item = localStorage.getItem(FAV_POKEMONS) as string;
@@ -8,9 +10,22 @@ export default function FavPokemonCards() {
   return (
     <div className="grid gap-2 justify-center">
       {favPokemons.map((pokemon) => (
-        <div key={pokemon} className="flex gap-2 items-center p-2 border-2 ">
-          <div className="w-[150px] capitalize">{pokemon}</div>
-          <button className="bg-red-600 px-2 text-white  rounded">
+        <div
+          key={pokemon}
+          id={pokemon}
+          className="flex gap-2 items-center p-2 border-2 "
+        >
+          <a href={`/${pokemon}`} className="w-[150px] capitalize">
+            {pokemon}
+          </a>
+          <button
+            className="bg-red-600 px-2 text-white  rounded"
+            onClick={() => {
+              toggleFavoritePokemons(pokemon);
+              const currentCard = DOM.select(pokemon);
+              if (currentCard) currentCard.style.display = "none";
+            }}
+          >
             Borrar
           </button>
         </div>

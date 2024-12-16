@@ -5,6 +5,7 @@ import { ACCOUNT_POKEMONS } from "@consts/accountPokemons";
 import Layout from "@layouts/Layout.astro";
 import { getPokemons } from "@services/getPokemons";
 import type { GetStaticPaths } from "astro";
+import { ROUTER } from "./router";
 
 export const getStaticPaths = (async ({ paginate }) => {
   const pokemons = (await getPokemons(ACCOUNT_POKEMONS)).results;
@@ -15,7 +16,7 @@ export const getStaticPaths = (async ({ paginate }) => {
 const { page } = Astro.props;
 ---
 
-<Layout title="Inicio">
+<Layout title={ROUTER.index.display}>
   <main class="grid gap-2 max-w-[1920px]">
     <PokemonList pokemons={page.data} />
     <Paged

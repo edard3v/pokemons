@@ -1,10 +1,11 @@
 ---
 import Layout from "@layouts/Layout.astro";
 import { ROUTER } from "./router";
+import FavPokemonCards from "src/react/FavPokemonCards";
 ---
 
 <Layout title={ROUTER.favoritos.display}>
-  <main>
-    <h1>Favoritos</h1>
+  <main class="p-4">
+    <FavPokemonCards client:only />
   </main>
 </Layout>

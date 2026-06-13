@@ -1,0 +1,17 @@
+.pokemon_view {
+  min-height: 100vh;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+
+  .card {
+    max-width: 340px;
+    border: 1px solid gray;
+    border-radius: var(--md);
+    padding: var(--lg);
+
+    .pokemon {
+      border: none;
+    }
+  }
+}

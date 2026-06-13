@@ -1,19 +1,19 @@
 ---
+import { extract_pokemon_info } from "@utils/extract_pokemon_info";
 import css from "./Pokemon.module.css";
 
 interface Props {
   url: string;
   name: string;
+  cls: string;
 }
 
-const { url, name } = Astro.props;
+const { url, name, cls } = Astro.props;
 
-const pokemon_id = url.split("/").at(-2);
-
-const img_url = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon_id}.png`;
+const { pokemon_img_url } = extract_pokemon_info(url);
 ---
 
-<a class={css.pokemon} href={`http://localhost:4321/${name}`}>
+<a class:list={[css.pokemon, cls]} href={`http://localhost:4321/${name}`}>
   <h2>{name}</h2>
-  <img src={img_url} alt={name} />
+  <img src={pokemon_img_url} alt={name} />
 </a>

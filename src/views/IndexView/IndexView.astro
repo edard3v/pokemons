@@ -1,0 +1,18 @@
+---
+import Pokemon from "@components/Pokemon/Pokemon.astro";
+import Layout from "@layouts/Layout.astro";
+import type { PokemonsRes } from "../../types/pokemons_res";
+import css from "./IndexView.module.css";
+
+const pokemons_fetch = await fetch("https://pokeapi.co/api/v2/pokemon");
+const res_pokemons = (await pokemons_fetch.json()) as PokemonsRes;
+---
+
+<Layout title="Inicio">
+  <main class={css.index}>
+    <h1 class={css.title}>Pokemons</h1>
+    <section class={css.pokemons} aria-label="Listado de pokemons">
+      {res_pokemons.results.map((item) => <Pokemon name={item.name} url={item.url} />)}
+    </section>
+  </main>
+</Layout>

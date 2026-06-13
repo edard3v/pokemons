@@ -1,0 +1,10 @@
+.pokemon {
+  border: 1px solid gray;
+  border-radius: var(--md);
+  padding: var(--md);
+
+  h2 {
+    text-transform: capitalize;
+    text-align: center;
+  }
+}

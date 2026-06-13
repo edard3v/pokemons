@@ -1,0 +1,15 @@
+.index {
+  display: grid;
+  gap: var(--xl);
+
+  .title {
+    text-align: center;
+  }
+
+  .pokemons {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 200px);
+    gap: var(--lg);
+    justify-content: center;
+  }
+}

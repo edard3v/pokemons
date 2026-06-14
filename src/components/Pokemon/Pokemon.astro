@@ -15,5 +15,5 @@ const { pokemon_img_url } = extract_pokemon_info(url);
 
 <a class:list={[css.pokemon, cls]} href={`http://localhost:4321/${name}`}>
   <h2>{name}</h2>
-  <img src={pokemon_img_url} alt={name} />
+  <img src={pokemon_img_url} alt={name} transition:name=`${name}` />
 </a>

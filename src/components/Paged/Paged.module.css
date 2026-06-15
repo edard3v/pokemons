@@ -1,0 +1,14 @@
+.paged {
+  display: flex;
+  justify-content: center;
+  gap: var(--md);
+
+  > * {
+    padding: var(--md) var(--xl);
+  }
+
+  a {
+    border-radius: var(--md);
+    border: 1px solid;
+  }
+}

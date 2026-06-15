@@ -1,18 +1,24 @@
 ---
-import Pokemon from "@components/Pokemon/Pokemon.astro";
 import Layout from "@layouts/Layout.astro";
-import type { PokemonsRes } from "../../types/pokemons_res";
 import css from "./IndexView.module.css";
+import Paged from "@components/Paged/Paged.astro";
+import type { Page } from "astro";
+import type { PokemonsResResult } from "../../types/pokemons_res";
+import Pokemon from "@components/Pokemon/Pokemon.astro";
 
-const pokemons_fetch = await fetch("https://pokeapi.co/api/v2/pokemon");
-const res_pokemons = (await pokemons_fetch.json()) as PokemonsRes;
+interface Props {
+  page: Page<PokemonsResResult>;
+}
+
+const { page } = Astro.props;
 ---
 
 <Layout title="Inicio">
   <main class={css.index}>
     <h1 class={css.title}>Pokemons</h1>
     <section class={css.pokemons} aria-label="Listado de pokemons">
-      {res_pokemons.results.map((item) => <Pokemon name={item.name} url={item.url} />)}
+      {page.data.map((item) => <Pokemon name={item.name} url={item.url} />)}
     </section>
+    <Paged prev={page.url.prev} current_page={page.currentPage} next={page.url.next} />
   </main>
 </Layout>

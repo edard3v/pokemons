@@ -2,9 +2,10 @@
 import type { GetStaticPaths } from "astro";
 import type { PokemonsRes } from "../types/pokemons_res";
 import PokemonView from "@views/PokemonView/PokemonView.astro";
+import { POKEMONS_URL } from "@api_pokemons/urls";
 
 export const getStaticPaths = (async () => {
-  const pokemons_fetch = await fetch("https://pokeapi.co/api/v2/pokemon?limit=41");
+  const pokemons_fetch = await fetch(POKEMONS_URL);
   const res_pokemons = (await pokemons_fetch.json()) as PokemonsRes;
 
   const pages = res_pokemons.results.map((item) => {

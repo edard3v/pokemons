@@ -19,7 +19,7 @@ const { pokemon_song_url } = extract_pokemon_info(url);
     <div class={css.card}>
       <Pokemon cls={css.pokemon} name={name} url={url} />
       <audio src={pokemon_song_url} controls></audio>
-      <a href="/">regresar</a>
+      <a href="javascript:history.back()">regresar</a>
     </div>
   </main>
 </Layout>

@@ -1,5 +1,5 @@
 ---
-import { extract_pokemon_info } from "@utils/extract_pokemon_info";
+import { get_pokemon_img } from "@api_pokemons/utils/get_pokemon_img";
 import css from "./Pokemon.module.css";
 
 interface Props {
@@ -10,7 +10,7 @@ interface Props {
 
 const { url, name, cls } = Astro.props;
 
-const { pokemon_img_url } = extract_pokemon_info(url);
+const pokemon_img_url = get_pokemon_img(url);
 ---
 
 <a class:list={[css.pokemon, cls]} href={`http://localhost:4321/${name}`}>

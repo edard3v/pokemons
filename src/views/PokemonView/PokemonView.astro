@@ -1,8 +1,8 @@
 ---
+import { get_pokemon_song } from "@api_pokemons/utils/get_pokemon_song";
 import css from "./PokemonView.module.css";
 import Pokemon from "@components/Pokemon/Pokemon.astro";
 import Layout from "@layouts/Layout.astro";
-import { extract_pokemon_info } from "@utils/extract_pokemon_info";
 
 interface Props {
   name: string;
@@ -11,7 +11,7 @@ interface Props {
 
 const { name, url } = Astro.props;
 
-const { pokemon_song_url } = extract_pokemon_info(url);
+const pokemon_song_url = get_pokemon_song(url);
 ---
 
 <Layout title={name}>

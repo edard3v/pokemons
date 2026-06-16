@@ -11,7 +11,7 @@ const { prev, current_page, next } = Astro.props;
 ---
 
 <nav class={css.paged}>
-  <a href={prev}>Atrás</a>
+  <a href={prev} class:list={[!prev && css.disable]}>Atrás</a>
   <span>{current_page}</span>
-  <a href={next}>Sigt</a>
+  <a href={next} class:list={[!next && css.disable]}>Sigt</a>
 </nav>

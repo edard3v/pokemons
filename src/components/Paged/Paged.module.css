@@ -10,5 +10,13 @@
   a {
     border-radius: var(--md);
     border: 1px solid;
+    background-color: royalblue;
+    color: whitesmoke;
+  }
+
+  .disable {
+    background-color: initial;
+    color: initial;
+    cursor: not-allowed;
   }
 }

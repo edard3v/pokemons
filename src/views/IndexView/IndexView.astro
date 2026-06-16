@@ -5,6 +5,7 @@ import Paged from "@components/Paged/Paged.astro";
 import type { Page } from "astro";
 import type { PokemonsResResult } from "../../api_pokemons/types/pokemons_res";
 import Pokemon from "@components/Pokemon/Pokemon.astro";
+import { INDEX_VIEW } from "./config";
 
 interface Props {
   page: Page<PokemonsResResult>;
@@ -13,7 +14,7 @@ interface Props {
 const { page } = Astro.props;
 ---
 
-<Layout title="Inicio">
+<Layout title={INDEX_VIEW.display}>
   <main class={css.index}>
     <h1 class={css.title}>Pokemons</h1>
     <section class={css.pokemons} aria-label="Listado de pokemons">

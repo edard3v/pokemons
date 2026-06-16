@@ -1,4 +1,5 @@
 ---
+import Header from "@components/Header/Header.astro";
 import "@styles/index.css";
 import { ClientRouter } from "astro:transitions";
 
@@ -43,6 +44,7 @@ const { title, description = "Pokemons", img_url } = Astro.props;
     <ClientRouter />
   </head>
   <body>
+    <Header />
     <slot />
   </body>
 </html>

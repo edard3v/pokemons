@@ -1,0 +1,21 @@
+---
+import css from "./Header.module.css";
+import { FAVORITOS_VIEW } from "@views/FavoritosView/config";
+import { INDEX_VIEW } from "@views/IndexView/config";
+
+const { pathname } = Astro.url;
+const links = [INDEX_VIEW, FAVORITOS_VIEW];
+---
+
+<header class={css.header}>
+  <nav>
+    {
+      links.map((item) => (
+        <a href={item.href}>
+          {item.display}
+          {pathname === item.href && <span class={css.line} transition:name="nav_line" />}
+        </a>
+      ))
+    }
+  </nav>
+</header>

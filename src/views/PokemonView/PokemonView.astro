@@ -3,6 +3,9 @@ import { get_pokemon_song } from "@api_pokemons/utils/get_pokemon_song";
 import css from "./PokemonView.module.css";
 import Pokemon from "@components/Pokemon/Pokemon.astro";
 import Layout from "@layouts/Layout.astro";
+import { get_pokemon_img } from "@api_pokemons/utils/get_pokemon_img";
+import { get_pokemon_id } from "@api_pokemons/utils/get_pokemon_id";
+import { capitalize } from "@utils/capitalize";
 
 interface Props {
   name: string;
@@ -12,9 +15,18 @@ interface Props {
 const { name, url } = Astro.props;
 
 const pokemon_song_url = get_pokemon_song(url);
+const pokemon_img_url = get_pokemon_img(url);
+const pokemon_id = get_pokemon_id(url);
+const pokemon_name = capitalize(name);
+
+const pokemon_description = `Información sobre el pokemon ${pokemon_name}`;
 ---
 
-<Layout title={name}>
+<Layout
+  title={`Pokemon #${pokemon_id} - ${pokemon_name}`}
+  img_url={pokemon_img_url}
+  description={pokemon_description}
+>
   <main class={css.pokemon_view}>
     <div class={css.card}>
       <Pokemon cls={css.pokemon} name={name} url={url} />

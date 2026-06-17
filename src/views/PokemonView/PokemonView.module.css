@@ -9,6 +9,15 @@
     border: 1px solid gray;
     border-radius: var(--md);
     padding: var(--lg);
+    position: relative;
+
+    .like,
+    .like_out {
+      position: absolute;
+      right: var(--lg);
+      top: var(--lg);
+      cursor: pointer;
+    }
 
     .pokemon {
       border: none;

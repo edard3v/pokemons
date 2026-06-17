@@ -6,6 +6,7 @@ import Layout from "@layouts/Layout.astro";
 import { get_pokemon_img } from "@api_pokemons/utils/get_pokemon_img";
 import { get_pokemon_id } from "@api_pokemons/utils/get_pokemon_id";
 import { capitalize } from "@utils/capitalize";
+import { Icon } from "astro-icon/components";
 
 interface Props {
   name: string;
@@ -28,10 +29,44 @@ const pokemon_description = `Información sobre el pokemon ${pokemon_name}`;
   description={pokemon_description}
 >
   <main class={css.pokemon_view}>
-    <div class={css.card}>
+    <div id="pokemon_card" class={css.card} data-name={name} data-img={pokemon_img_url}>
+      <Icon
+        id="like"
+        class:list={[css.like, "hidden"]}
+        name={"like"}
+        size={30}
+        color={"royalblue"}
+      />
+      <Icon
+        id="like_out"
+        class:list={[css.like_out]}
+        name={"like_out"}
+        size={30}
+        color={"royalblue"}
+      />
       <Pokemon cls={css.pokemon} name={name} url={url} />
       <audio src={pokemon_song_url} controls></audio>
       <a href="javascript:history.back()">regresar</a>
     </div>
   </main>
 </Layout>
+
+<script>
+  document.addEventListener("astro:page-load", () => {
+    const pokemon_card = document.querySelector("#pokemon_card") as HTMLElement;
+    if (!pokemon_card) return;
+
+    const icon_like = document.querySelector("#like") as HTMLElement;
+    const icon_like_out = document.querySelector("#like_out") as HTMLElement;
+
+    icon_like_out?.addEventListener("click", () => {
+      icon_like.classList.remove("hidden");
+      icon_like_out.classList.add("hidden");
+    });
+
+    icon_like?.addEventListener("click", () => {
+      icon_like_out.classList.remove("hidden");
+      icon_like.classList.add("hidden");
+    });
+  });
+</script>

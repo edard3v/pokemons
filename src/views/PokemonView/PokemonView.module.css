@@ -11,12 +11,11 @@
     padding: var(--lg);
     position: relative;
 
-    .like,
-    .like_out {
+    .wrapper_like {
       position: absolute;
       right: var(--lg);
       top: var(--lg);
-      cursor: pointer;
+      background-color: transparent;
     }
 
     .pokemon {

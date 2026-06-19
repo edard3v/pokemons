@@ -48,3 +48,9 @@ const { title, description = "Pokemons", img_url } = Astro.props;
     <slot />
   </body>
 </html>
+
+<script>
+  import { init_favorite_pokemons } from "@local_storage/init_favorite_pokemons";
+
+  init_favorite_pokemons();
+</script>

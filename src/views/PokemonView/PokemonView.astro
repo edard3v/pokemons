@@ -30,20 +30,22 @@ const pokemon_description = `Información sobre el pokemon ${pokemon_name}`;
 >
   <main class={css.pokemon_view}>
     <div id="pokemon_card" class={css.card} data-name={name} data-img={pokemon_img_url}>
-      <Icon
-        id="like"
-        class:list={[css.like, "hidden"]}
-        name={"like"}
-        size={30}
-        color={"royalblue"}
-      />
-      <Icon
-        id="like_out"
-        class:list={[css.like_out]}
-        name={"like_out"}
-        size={30}
-        color={"royalblue"}
-      />
+      <button id="wrapper_like" class={css.wrapper_like}>
+        <Icon
+          id="like"
+          class:list={[css.like, "hidden"]}
+          name={"like"}
+          size={30}
+          color={"royalblue"}
+        />
+        <Icon
+          id="like_out"
+          class:list={[css.like_out]}
+          name={"like_out"}
+          size={30}
+          color={"royalblue"}
+        />
+      </button>
       <Pokemon cls={css.pokemon} name={name} url={url} />
       <audio src={pokemon_song_url} controls></audio>
       <a href="javascript:history.back()">regresar</a>
@@ -52,21 +54,29 @@ const pokemon_description = `Información sobre el pokemon ${pokemon_name}`;
 </Layout>
 
 <script>
+  import { is_favorite_pokemons } from "@local_storage/is_favorite_pokemons";
+  import { toggle_favorite_pokemons } from "@local_storage/toggle_favorite_pokemons";
+
   document.addEventListener("astro:page-load", () => {
     const pokemon_card = document.querySelector("#pokemon_card") as HTMLElement;
-    if (!pokemon_card) return;
-
+    const wrapper_like = document.querySelector("#wrapper_like") as HTMLElement;
     const icon_like = document.querySelector("#like") as HTMLElement;
     const icon_like_out = document.querySelector("#like_out") as HTMLElement;
 
-    icon_like_out?.addEventListener("click", () => {
+    const name = pokemon_card.dataset.name!;
+
+    if (is_favorite_pokemons(name)) {
       icon_like.classList.remove("hidden");
       icon_like_out.classList.add("hidden");
-    });
+    }
 
-    icon_like?.addEventListener("click", () => {
-      icon_like_out.classList.remove("hidden");
-      icon_like.classList.add("hidden");
+    wrapper_like?.addEventListener("click", () => {
+      icon_like?.classList.toggle("hidden");
+      icon_like_out?.classList.toggle("hidden");
+
+      const img = pokemon_card.dataset.img!;
+
+      toggle_favorite_pokemons({ name, img });
     });
   });
 </script>
